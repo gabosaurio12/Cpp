@@ -38,7 +38,12 @@ void insertar(string add, int pos, string cadena){
 	}
 	else{
 		string inicio = inicioCad(pos,cadena);
-		if(pos > )
+		if(pos > 0){
+			string final = finCad(pos,cadena);
+			cadena = inicio + add + final;
+		}
+		else
+			cadena = inicio + add;
 	}
 }
 
@@ -59,9 +64,8 @@ void encontrarCad(string cadI, string cadB){
 			}
 
 			if(band){
-				/*insertar('*',i,cadI);
+				insertar('*',i,cadI);
 				insertar('*',k+1,cadI);
-				*/
 				cout << cadI << endl;
 			}	
 		}
