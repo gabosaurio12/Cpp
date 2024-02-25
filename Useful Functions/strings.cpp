@@ -4,9 +4,7 @@
 using namespace std;
 
 int longitud(string cad){
-    int cont, i;
-    cont = 0;
-    i = 0;
+    int cont = 0;   i = 0;
     while (cad[i] != '\0'){
         cont++;
         i ++;
