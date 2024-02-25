@@ -13,7 +13,7 @@ int longitudCad(string cad){
 
 
 string iniCad(int pos, string cad){
-	cad inicio = "";
+	string inicio = "";
 	for(int i = 0; i < pos; i++)
 		inicio = inicio + cad[i];
 	
@@ -22,7 +22,7 @@ string iniCad(int pos, string cad){
 
 
 string finCad(int pos, string cad){
-	int i = pos;	cad fin = "";
+	int i = pos;	string fin = "";
 	while(cad[i] != '\0'){
 		fin = fin + cad[i];
 		i++;
@@ -31,13 +31,13 @@ string finCad(int pos, string cad){
 }
 
 
-void insertar(string add, int pos, string cadena){
+string insertar(string add, int pos, string cadena){
 	if(pos < 1){
 		string final = finCad(pos,cadena);
 		cadena = add + final;
 	}
 	else{
-		string inicio = inicioCad(pos,cadena);
+		string inicio = iniCad(pos,cadena);
 		if(pos > 0){
 			string final = finCad(pos,cadena);
 			cadena = inicio + add + final;
@@ -45,6 +45,8 @@ void insertar(string add, int pos, string cadena){
 		else
 			cadena = inicio + add;
 	}
+
+	return cadena;
 }
 
 
@@ -64,9 +66,9 @@ void encontrarCad(string cadI, string cadB){
 			}
 
 			if(band){
-				insertar('*',i,cadI);
-				insertar('*',k+1,cadI);
-				cout << cadI << endl;
+				string cadp1 = insertar("*",i,cadI);
+				string cadp2 = insertar("*",k+1,cadp1);
+				cout << cadp2 << endl;
 			}	
 		}
 	}
@@ -79,7 +81,8 @@ int main(){
 	string cad1, cad2;
 	
 	cout << "Ingresa la Cadena Base y la Cadena que quieres Buscar \n";
-	cin >> cad1 >> cad2;
+	cout << "Cadena Base ";	getline(cin, cad1);
+	cout << "Cadena a Buscar ";	getline(cin, cad2);
 
 	encontrarCad(cad1,cad2);
 
