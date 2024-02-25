@@ -12,8 +12,33 @@ int longitudCad(string cad){
 }
 
 
-void insertar(string add, int pos, string cadena){
+string finCad(int pos, string cad){
+	int i = pos;	cad fin = "";
+	while(cad[i] != '\0'){
+		fin = fin + cad[i];
+		i++;
+	}
+	return fin;
+}
+
+
+string iniCad(int pos, string cad){
+	cad inicio = "";
+	for(int i = 0; i < pos; i++)
+		inicio = inicio + cad[i];
 	
+	return inicio;	
+}
+
+void insertar(string add, int pos, string cadena){
+	if(pos < 1){
+		string final = finCad(pos,cadena);
+		cadena = add + final;
+	}
+	else{
+		string inicio = inicioCad(pos,cadena);
+		if(pos > )
+	}
 }
 
 
