@@ -9,7 +9,10 @@ void leerArr (int a[],int n){
 
 int busquedaBi (int arr[], int max, int min, int b){
     int g = (max + min) / 2;
-    
+
+    if (g == max || g == min)
+	return -1;
+
     if (arr[g] == b)
         return g;
         
