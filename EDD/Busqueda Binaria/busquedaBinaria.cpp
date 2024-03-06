@@ -22,8 +22,6 @@ int busquedaBi (int arr[], int max, int min, int b){
         else{
             if (arr[g] < b)
                 busquedaBi (arr,max,g,b);
-            else
-                return -1;
         }
     }
 }
@@ -37,7 +35,6 @@ int main(){
         return -1;
     else
     	cout << busquedaBi(a,n-1,0,b);
-    
-    
+	
     return 0;
 }
