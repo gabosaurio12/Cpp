@@ -14,81 +14,117 @@ struct empleado{
 };
 
 void escribirEmpleado (empleado arr[], int i){
-	cout << "Nombre " << arr[i].nombre << endl;
-	cout << "Apellido Materno " << arr[i].apellidoMaterno << endl;
-	cout << "Apellido Paterno " << arr[i].apellidoPaterno << endl;
-	cout << "Direccion " << arr[i].direccion << endl;
-	cout << "Telefono " << arr[i].telefonoCel << endl;
-	cout << "Puesto " << arr[i].puesto << endl;
-	cout << "Salario " << arr[i].salario << endl;
+	cout << "Nombre: " << arr[i].nombre << "\n";
+	cout << "Apellido Paterno: " << arr[i].apellidoPaterno << "\n";
+	cout << "Apellido Materno: " << arr[i].apellidoMaterno << "\n";
+	cout << "Direccion: " << arr[i].direccion << "\n";
+	cout << "Telefono: " << arr[i].telefonoCel << "\n";
+	cout << "Puesto: " << arr[i].puesto << "\n";
+	cout << "Salario: " << arr[i].salario << "\n";
 }
 
 void borrarEmpleado (empleado arr[], int i){
-	arr[i].nombre = '\0';
-	arr[i].apellidoMaterno = '\0';
-	arr[i].apellidoPaterno = '\0';
-	arr[i].direccion = '\0';
-	arr[i].telefonoCel = '\0';
-	arr[i].puesto = '\0';
+	arr[i].nombre = "";
+	arr[i].apellidoMaterno = "";
+	arr[i].apellidoPaterno = "";
+	arr[i].direccion = "";
+	arr[i].telefonoCel = "";
+	arr[i].puesto = "";
 	arr[i].salario = 0;
-	cout << "Usuario eliminado \n";
+	cout << "\nUsuario eliminado \n";
 }
 
 void insertar (empleado *pu){
-	cout << "Nombre ";	getline(cin, *pu.nombre);
-	*pu->nombre = "juan";
-	cout << "Apellido Materno ";	getline(cin, *pu.apellidoMaterno);
-	cout << "Apellido Paterno ";	getline(cin, *pu.apellidoPaterno);
-	cout << "Direccion ";	getline(cin, *pu.direccion);
-	cout << "Telefono Celular ";	getline(cin, *pu.telefonoCel);
-	cout << "Puesto ";	getline(cin, *pu.puesto);
-	cout << "Salario ";	cin >> *pu.salario;
-	pu++;
+    cout << "\nDatos del Empleado: \n";
+	cout << "Nombre: ";
+	cin.ignore();
+	getline(cin, pu -> nombre);
+	cout << "Apellido Paterno: ";	
+	getline(cin, pu -> apellidoPaterno);
+	cout << "Apellido Materno: ";	
+	getline(cin, pu -> apellidoMaterno);
+	cout << "Direccion: ";	
+	getline(cin, pu -> direccion);
+	cout << "Telefono Celular: ";	
+	getline(cin, pu -> telefonoCel);
+	cout << "Puesto: ";
+	getline(cin, pu -> puesto);
+	cout << "Salario: ";
+	cin >> pu -> salario;
 }
 
-void buscar (empleado arr[], string nombre, string apeMat, string apePat){
-    for (int i = 0; i < 100; i++){
+void buscar (empleado arr[], string nombre, string apePat, string apeMat){
+    int band = 1;
+    int i = 0;
+    while (band && i < 100){
     	if (arr[i].nombre == nombre){
-    		if (arr[i].apellidoMaterno == apeMat){
-    			if (arr[i].apellidoPaterno == apePat){
+    		if (arr[i].apellidoPaterno == apePat){
+    			if (arr[i].apellidoMaterno == apeMat){
     				char opc;
     				escribirEmpleado(arr,i);
-    				cout << "Quieres borrarlo? s/n ";	cin >> opc;
+    				cout << "\nQuieres borrarlo? s/n ";
+				cin >> opc;
     				if (opc == 's')
     					borrarEmpleado(arr,i);
     			}
     			else
-    				cout << "No se encontro el empleado\n";
+    				band = 0;
     		}
     		else
-    			cout << "No se encontro el empleado\n";
+    			band = 0;
     	}
     	else
-    		cout << "No se encontro el empleado\n";
+    		band = 0;
+        i++;
+    }
+
+    if (band = 0)
+	    cout << "\nNo se encontro\n";   
+}
+
+void mostrarEmpleados(empleado arr[]){
+    for (int i = 0; i < 100; i++){
+		if (arr[i].nombre != ""){
+			escribirEmpleado(arr,i);
+			cout << "\n";
+		}
     }
 }
 
 int main(){
-	empleado arrEmpleados[100];	empleado *p = arrEmpleados;
+	empleado arrEmpleados[100];
+    empleado *p = arrEmpleados;
 	int opc;
-	cout << "Que quiere hacer? \n";
-	cout << "1. Insertar Empleado \n2. Buscar Empleado \n3. Salir";
-	cin >> opc;
-	string nombre, apeMat, apePat;
-	switch (opc){
-		case 1:
-			insertar(p);
-			break;
-		
-		case 2:
-			cout << "Nombre ";	getline(cin, nombre);
-			cout << "Apellido Materno ";	getline(cin, apeMat);
-			cout << "Apellido Paterno ";	getline(cin, apePat);
-			buscar(arrEmpleados,nombre,apeMat,apePat);
-			break;
-		
-		case 3:
-			return 0;
+	
+	while (opc != 4){
+		cout << "\nEMPLEADOS\n";
+        cout << "Que quiere hacer? \n";
+        cout << "1. Insertar Empleado \n2. Buscar Empleado \n3. Mostrar Empleados\n4. Salir\n";
+		cout << "Ingresar opcion ";
+        cin >> opc;
+        string nombre, apeMat, apePat;
+        switch (opc){
+            case 1:
+                insertar(p);
+                p++;
+                break;
+            
+            case 2:
+                cout << "\nNombre \n";
+                cin.ignore();
+                getline(cin, nombre);
+                cout << "Apellido Paterno \n";
+                getline(cin, apePat);
+                cout << "Apellido Materno \n";
+                getline(cin, apeMat);
+                buscar(arrEmpleados,nombre,apePat,apeMat);
+                break;
+            
+            case 3:
+				cout << "\n";
+                mostrarEmpleados(arrEmpleados);
+                break;
+		}
 	}
 
 	return 0;
