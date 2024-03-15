@@ -2,9 +2,13 @@
 
 using namespace std;
 
-void llenado(int arrAsientos[][4]){
+void llenado(int arrAsientos[][5]){
     arrAsientos[0][0] = 45;
     
+    for (int i = 1; i < 11; i++){
+        for (int j = 1; j < 5; j++)
+            arrAsientos[i][j] = 76;
+    }
     int n = 49;
     for (int i = 1; i < 5; i++){
         arrAsientos[0][i] = n;
@@ -17,27 +21,22 @@ void llenado(int arrAsientos[][4]){
         a+=1;
     }
 
-    for (int i = 1; i < 11; i++){
-        for (int j = 1; j < 5; j++)
-            arrAsientos[i][j] = 76;
-    }
 }
 
-void imprimirAsientos(int arrAsientos[][4]){
+void imprimirAsientos(int arrAsientos[][5]){
     for (int i = 0; i < 11; i++){
         for (int j = 0; j < 5; j++){
-            /*if (j == 3){
+            if (j == 3){
                 cout << "\t" << char(arrAsientos[i][j]) << " ";
             }
             else
-                cout << char(arrAsientos[i][j]) << " ";*/
-            cout << arrAsientos[i][j] << " ";
+                cout << char(arrAsientos[i][j]) << " ";
         }
         cout << "\n";
     }
 }
 
-void apartado(int arrAsientos[][4], char f, int c){
+void apartado(int arrAsientos[][5], char f, int c){
     if (arrAsientos[f][c] == 'O'){
         cout << "Este asiento no esta disponible \n";
     }
@@ -47,7 +46,7 @@ void apartado(int arrAsientos[][4], char f, int c){
 }
 
 int main(){
-    int arrAsientos[10][4];
+    int arrAsientos[10][5];
     llenado(arrAsientos);
     imprimirAsientos(arrAsientos);
     return 0;
