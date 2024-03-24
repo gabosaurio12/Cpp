@@ -1,4 +1,4 @@
-    #include <iostream>
+#include <iostream>
 
 using namespace std;
 
@@ -26,14 +26,16 @@ void escribirLista(nodo *siguiente){
     cout << "\n";
 }
 
-void modificarPrimeraOcu(nodo *siguiente, int vMod, int nValor){
+void modificar(nodo *siguiente, int pos, int nValor){
 	int band = 0;
+    int cont = 0;
 	while (siguiente != NULL && !band){
-		if (siguiente -> valor == vMod){
+		if (cont == pos){
 			siguiente -> valor = nValor;
 			band = 1;
 		}
 		else{
+            cont++;
 			siguiente = siguiente -> sig;
 		}
 	}
@@ -65,13 +67,13 @@ int main(){
 
     escribirLista(cab);
 
-    int valorModificar, nuevoValor;
-    cout << "Ingresa el valor que quieres modificar ";
-    cin >> valorModificar;
+    int posModificar, nuevoValor;
+    cout << "Ingresa la posicion del valor que quieres modificar ";
+    cin >> posModificar;
     cout << "Ingresa el valor nuevo ";
     cin >> nuevoValor;
 
-    modificarPrimeraOcu(cab,valorModificar,nuevoValor);
+    modificar(cab,posModificar,nuevoValor);
 
     escribirLista(cab);
 

@@ -13,25 +13,22 @@ void nuevoNodo(nodo *n){
     n -> sig = NULL;
 }
 
-void insertarFin(nodo *ant, nodo *nuevo){
-    ant -> sig = nuevo;
-    nuevo -> sig = NULL;
-}
-
-void insertar(nodo *ant, nodo *nuevo, nodo *siguiente){
-    /*nodo *aux;
-    aux = siguiente*/
-    ant -> sig = nuevo;
-    nuevo -> sig = siguiente;
-    //delete aux;
-}
-
 void escribirLista(nodo *siguiente){
     while (siguiente != NULL){
         cout << " -> " << siguiente -> valor;
         siguiente = siguiente -> sig;
     }
     cout << "\n";
+}
+
+void insertarFin(nodo *ant, nodo *nuevo){
+    ant -> sig = nuevo;
+    nuevo -> sig = NULL;
+}
+
+void eliminar(nodo *ant, nodo *borrar, nodo *siguiente){
+    ant -> sig = siguiente;
+    delete borrar;
 }
 
 int main(){
@@ -43,21 +40,22 @@ int main(){
 
     cab = p1;
 
-    nodo *p2 = NULL;
+    nodo *p2;
     p2 = new nodo;
     nuevoNodo(p2);
     insertarFin(p1,p2);
 
-    escribirLista(cab);
-
-    nodo *p3 = NULL;
+    nodo *p3;
     p3 = new nodo;
     nuevoNodo(p3);
-    insertar(p1,p3,p2);
+    insertarFin(p2,p3);
 
     escribirLista(cab);
-    
-    delete cab;
+
+    eliminar(p1,p2,p3);
+
+    escribirLista(cab);
+
     delete p1;
     delete p2;
     delete p3;
