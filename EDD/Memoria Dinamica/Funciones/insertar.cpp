@@ -3,8 +3,8 @@
 using namespace std;
 
 struct nodo{
-	int valor;
-	nodo *sig;
+    int valor;
+    nodo *sig;
 };
 
 void nuevoNodo(nodo *n){
@@ -18,6 +18,13 @@ void insertarFin(nodo *ant, nodo *nuevo){
     nuevo -> sig = NULL;
 }
 
+void insertar(nodo *ant, nodo *nuevo, nodo *siguiente){
+    /*nodo *aux;
+    aux = siguiente*/
+    ant -> sig = nuevo;
+    nuevo -> sig = siguiente;
+}
+
 void escribirLista(nodo *siguiente){
     while (siguiente != NULL){
         cout << " -> " << siguiente -> valor;
@@ -26,23 +33,8 @@ void escribirLista(nodo *siguiente){
     cout << "\n";
 }
 
-void modificar(nodo *siguiente, int pos, int nValor){
-	int band = 0;
-    int cont = 1;
-	while (siguiente != NULL && !band){
-		if (cont == pos){
-			siguiente -> valor = nValor;
-			band = 1;
-		}
-		else{
-            cont++;
-			siguiente = siguiente -> sig;
-		}
-	}
-}
-
 int main(){
-	nodo *cab = NULL;
+    nodo *cab = NULL;
 
     nodo *p1 = NULL;
     p1 = new nodo;
@@ -55,27 +47,19 @@ int main(){
     nuevoNodo(p2);
     insertarFin(p1,p2);
 
+    escribirLista(cab);
+
     nodo *p3 = NULL;
     p3 = new nodo;
     nuevoNodo(p3);
-    insertarFin(p2,p3);
-
-    nodo *p4 = NULL;
-    p4 = new nodo;
-    nuevoNodo(p4);
-    insertarFin(p3,p4);
+    insertar(p1,p3,p2);
 
     escribirLista(cab);
+    
+    delete cab;
+    delete p1;
+    delete p2;
+    delete p3;
 
-    int posModificar, nuevoValor;
-    cout << "Ingresa la posicion del valor que quieres modificar ";
-    cin >> posModificar;
-    cout << "Ingresa el valor nuevo ";
-    cin >> nuevoValor;
-
-    modificar(cab,posModificar,nuevoValor);
-
-    escribirLista(cab);
-
-	return 0;
+    return 0;
 }
