@@ -19,7 +19,7 @@ void insertarFin(nodo *ant, nodo *nuevo){
 }
 
 int buscar(nodo *siguiente, int busqueda){
-	int c = 0;
+	int c = 1;
 	while (siguiente != NULL){
 		if (siguiente -> valor == busqueda){
 			return c;
@@ -67,7 +67,7 @@ int main(){
 	escribirLista(cab);
 
 	int val;
-	cout << "Qué valor quiéres buscar? \n";
+	cout << "Que valor quieres buscar? \n";
 	cin >> val;
 
 	int resBuscar = buscar(cab,val);

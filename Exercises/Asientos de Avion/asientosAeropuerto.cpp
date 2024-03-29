@@ -3,12 +3,12 @@
 
 using namespace std;
 
-void pantallaPrincipal(){
+void pantallaPrincipal() {
     cout << "\t Vuelo 420 \n";
     cout << "\t Bienvenido \n\n";
 }
 
-void llenado(int mA[][5]){
+void llenado(int mA[][5]) {
     mA[0][0] = 126;
 
     int l = 65;
@@ -30,7 +30,7 @@ void llenado(int mA[][5]){
     }
 }
 
-void imprimirAsientos(int mA[][5]){
+void imprimirAsientos(int mA[][5]) {
     for (int i = 0; i < 8; i++){
         for (int j = 0; j < 5; j++){
             if (j == 3){
@@ -42,15 +42,26 @@ void imprimirAsientos(int mA[][5]){
     }
 }
 
-void mayus(string &s){
+void mayus(string &s) {
     int c = int(s[0]);
     c -= 32;
     s[0] = char(c);
 }
 
-int validar(string &asiento){
+int longitudCad(string s) {
+    int i = 0;
+    while (s[i] != '\0')
+        i++;
+    return i;
+}
+
+int validar(string &asiento) {
     char l = int(asiento[0]);
     char n = int(asiento[1]);
+
+    if (longitudCad(asiento) > 2){
+        return 0;
+    }
 
     if (l > 64 && l < 72){
         if (n > 48 && n < 53)

@@ -2,58 +2,60 @@
 
 using namespace std;
 
-struct nodo{
+struct nodo {
 	int valor;
 	nodo *siguiente;
 };
 
-nodo* crearNodo (int dato){
+nodo* crearNodo (int dato) {
 	nodo *ap = new nodo;
 	ap -> valor = dato;
 	ap -> siguiente = NULL;
 	return ap;
 }
-bool estaVacia (nodo *cabeza){
+
+bool estaVacia (nodo *cabeza) {
 	if (cabeza == NULL)
 		return true;
 	else
 		return false;
 }
 
-void insertarOrdenado (nodo *n, int dato) {
+
+void insOrdRec(nodo *&n, int dato) {
 	if (estaVacia(n)){
 		n = crearNodo(dato);
-	} else if (n -> valor < dato){
-		nodo *ap = new nodo;
-		ap -> valor = dato;
-
-		nodo *aux;
-		aux = n -> siguiente;
-		
-		n -> siguiente = ap;
-		ap -> siguiente = aux;
 	}
-
-	else
-		insertarOrdenado(n -> siguiente, dato);
+	else{
+		if (n -> valor >= dato){
+			nodo *ap = new nodo;
+			ap -> valor = dato;
+			ap -> siguiente = n;
+			n = ap;
+		}
+		else
+			insOrdRec(n -> siguiente, dato);
+	}
 }
 
-void imprimir(nodo *n){
+void imprimirRecursivo(nodo *n) {
 	while (n != NULL){
-		cout << n -> valor << " -> "; 
+		cout << n -> valor << " -> ";
 		n = n -> siguiente;
 	}
 }
 
-int main(){
+int main() {
 	nodo *cabeza = NULL;
 
-	insertarOrdenado(cabeza, 2);
-	insertarOrdenado(cabeza, 4);
-	insertarOrdenado(cabeza, 6);
-	insertarOrdenado(cabeza, 8);
+	insOrdRec(cabeza, 8);
+	insOrdRec(cabeza, 2);
+	insOrdRec(cabeza, 4);
+	insOrdRec(cabeza, 7);
+	insOrdRec(cabeza, 9);
+	insOrdRec(cabeza, 3);
 
-	imprimir(cabeza);
+	imprimirRecursivo(cabeza);
 
 	return 0;
 }
