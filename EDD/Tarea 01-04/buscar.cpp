@@ -34,20 +34,16 @@ int buscar(nodo *n, int busqueda){
 	return -1;
 }
 
-void insertarOrdenado (nodo *&n, int dato) {
+void insertarRecursivo(nodo *&n, int dato) {
 	if (estaVacia(n)){
 		n = crearNodo(dato);
 	}
-	else{
-		if (n -> valor >= dato){
-			nodo *ap = new nodo;
-			ap -> valor = dato;
-			ap -> sig = n;
-			n = ap;
-		}
-		else
-			insertarOrdenado(n -> sig, dato);
+
+	else if (n -> sig == NULL){
+		n -> sig = crearNodo(dato);
 	}
+	else
+		insertarRecursivo(n -> sig, dato);
 }
 
 void imprimirRecursivo(nodo *n) {
@@ -69,7 +65,7 @@ int main(){
 		int dato;
 		cout << "Ingresa el dato ";
 		cin >> dato;
-		insertarOrdenado(cabeza, dato);
+		insertarRecursivo(cabeza, dato);
 	}
 
 	imprimirRecursivo(cabeza);
