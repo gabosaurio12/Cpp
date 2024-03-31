@@ -38,6 +38,23 @@ void insOrdRec(nodo *&n, int dato) {
 	}
 }
 
+void insertarOrdenado(nodo *&n, int dato) {
+	if (estaVacia(n))
+		n = crearNodo(dato);
+	
+	else{
+		int band = 1;
+		while (n -> valor < dato){
+			n = n -> siguiente;
+		}
+
+		nodo *ap = new nodo;
+		ap -> valor = dato;
+		ap -> siguiente = n;
+		n = ap;
+	}
+}
+
 void imprimirRecursivo(nodo *n) {
 	while (n != NULL){
 		cout << n -> valor << " -> ";
@@ -54,6 +71,7 @@ int main() {
 	insOrdRec(cabeza, 7);
 	insOrdRec(cabeza, 9);
 	insOrdRec(cabeza, 3);
+	insertarOrdenado(cabeza, 5);
 
 	imprimirRecursivo(cabeza);
 
