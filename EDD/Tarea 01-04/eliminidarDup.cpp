@@ -24,27 +24,43 @@ void eliminarDuplicados(nodo *&l1, nodo *&l2) {
 	nodo *anteriorL2 = NULL;
 
 	while (auxL1 != NULL) {
+		actualL1 = auxL1;
 		auxL1 = auxL1->sig;
+		nodo *borrarActual1 = actualL1;
 
+		auxL2 = l2;
 		while (auxL2 != NULL) {
+			actualL2 = auxL2;
 			auxL2 = auxL2->sig;
+			nodo *borrarActual2 = actualL2;
 
 			if (actualL1->valor == actualL2->valor) {
-				if (anteriorL1 != NULL)
+				if (anteriorL1 != NULL){
 					anteriorL1->sig = actualL1->sig;
-				else
+					actualL1 = actualL1->sig;
+				}
+				else{
 					l1 = actualL1->sig;
+					actualL1 = actualL1->sig;
+				}
 
-				delete actualL1;
+				delete borrarActual1;
 
-				if (anteriorL2 != NULL)
+				if (anteriorL2 != NULL){
 					anteriorL2->sig = actualL2->sig;
-				else
+					actualL2 = actualL2->sig;
+				}
+				else{
 					l2 = actualL2->sig;
+					actualL2 = actualL2->sig;
+				}
 
-				delete actualL2;
+				delete borrarActual2;
 			}
+			anteriorL2 = actualL2;
 		}
+
+		anteriorL1 = actualL1;
 	}
 }
 
