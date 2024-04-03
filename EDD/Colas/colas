@@ -1,0 +1,24 @@
+FUNCION sacar (&frente, &final) --> ENTERO
+	aux = frente;
+	elemento = aux->elemento;
+	frente = frente->siguiente;
+	SI frente == NULO ENTONCES
+		final = NULO;
+	FIN_SI
+	liberar(aux);
+	REGRESA elemento;
+FIN_sacar
+
+PROCEDIMIENTO agregar(&final, &frente, elemento)
+	new (aux);
+	aux -> elemento = elemento;
+	aux -> siguiente = NULO;
+	SI final == NULO ENTONCES
+		frente = aux;
+	SINO
+		final->siguiente = aux;
+	FIN_SI
+
+	final = aux;
+FIN_agregar
+
