@@ -1,0 +1,49 @@
+PROCEDIMIENTO reemplazarArreglo(<E/S> a[], b[], <E> i, fin)
+	PARA i, fin HACER
+		b[i] = a[i];
+	FIN_PARA
+FIN_reemplazarArreglo
+
+PROCEDIMIENTO mezcla(<E/S> a[], <E> izq, med, der)
+	*aux
+	reservar(aux[der - izq + 1])
+	x = z
+	z = izq
+	y = med + 1
+
+	MIENTRAS (x <= med) Y (y <= der) HACER
+		SI (a[x] <= a[y]) ENTONCES
+			aux[z] = aux[x]
+			z = z + 1;
+			x = x + 1;
+		SINO
+			aux[z] = aux[y]
+			z = z + 1;
+			y = y + 1;
+	FIN_MIENTRAS
+
+	MIENTRAS x <= med HACER
+		aux[z] = aux[x];
+		z = z + 1;
+		x = x + 1;
+	FIN_MIENTRAS
+
+	MIENTRAS y <= der HACER
+		aux[z] = aux[y];
+		z = z + 1;
+		y = y + 1;
+	FIN_MIENTRAS
+
+	reemplazarArreglo(aux, a);
+
+	liberar(aux);
+FIN_mezcla
+
+PROCEDIMIENTO quickSort(<E/S> a[], <E> primero, ultimo)
+	SI primero < ultimo ENTONCES
+		central = (primero + ultimo) / 2;
+		mergeSort(a, primero, central);
+		mergeSort(a, central + 1, ultimo);
+		mezcla(a, primero, central, ultimo);
+	FIN_SI
+FIN_quickSort
