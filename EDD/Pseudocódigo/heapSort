@@ -1,0 +1,52 @@
+PROCEDIMIENTO intercambio(E/S: a, b)
+	aux = a
+	a = b
+	b = aux
+
+FIN_intercambio
+
+PROCEDIMIENTO heapify(E/S: a[], E: tamañoHeap, indicePadre)
+	// Se establece una relaciónn entre los índices de un nodo
+	   y los índices de su hijo derecho e izquierdo
+
+	mayor = indicePadre
+	iHijoIzq = 2 * indicePadre + 1
+	iHijoDer = 2 * indicePadre + 2
+
+	// Nos aseguramos que el padre es mayor o igual a su hijo izquierdo y derecho
+
+	SI (iHijoIzq < tamañoHeap) Y (a[iHijoIzq] > a[mayor]) ENTONCES
+		mayor = iHijoizq
+	FIN_SI
+	SI (iHijoDer < tamañoHeap) Y (a[iHijoDer] > a[mayor]) ENTONCES
+		mayor = iHijoDer
+	FIN_SI
+
+	// Intercambiamos y hacemos heapify si el padre no es el mayor
+
+	SI mayor != indicePadre ENTONCES
+		intercambio(a[indicePadre], a[mayor])
+		heapify(a, tamañoHeap, mayor)
+	FIN_SI
+
+FIN_heapify
+
+PROCEDIMIENTO heapSort(E/S: a[], E: tamañoArreglo)
+	// creando max heap, iterando para todos los índices sin-hojas
+	   desde indices de hojas que no tienen hijos que revisar
+
+	PARA indicePadre = tamañoArreglo / 2 - 1, indicePadre >= 0 HACER
+		heapify(a, tamañoArreglo, indicePadre)
+	FIN_PARA
+
+	// intercambiar el elemento padre del heap con el del indiceUltimoHeap, se reduce el tamaño del heap hasta que sea 2 (el indice del último heap es 1) 
+
+	PARA indiceUltimoHeap = tamañoArreglo - 1, indiceUltimoHeap >= 1 HACER
+		intercambio(a[0], a[indiceUltimoHeap])
+
+		// heapifying el elemento padre hasta que el elemento mayor esté de nuevo en la raíz
+
+		heapify(a, indiceUltimoHeap, 0)
+	FIN_PARA
+
+FIN_heapSort

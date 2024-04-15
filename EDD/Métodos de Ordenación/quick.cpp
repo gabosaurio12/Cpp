@@ -27,7 +27,7 @@ void quickSort(int a[], int primero, int ultimo) {
             i++;    
             k--;
         }
-    }while (i <= k);
+    } while (i <= k);
 
     if (primero < k)
         quickSort(a, primero, k);
@@ -43,13 +43,13 @@ void imprimirArr(int a[], int n) {
 }
 
 int main() {
-    int a[] = {2, 7, 4, 3, 5, 1};
+    int a[] = {10, 7, 8, 4, 3, 1, 2};
 	
-    imprimirArr(a, 6);
+    imprimirArr(a, 7);
 
-    quickSort(a, 0, 5);
+    quickSort(a, 0, 6);
 
-    imprimirArr(a, 6);
+    imprimirArr(a, 7);
 
     return 0;
 }

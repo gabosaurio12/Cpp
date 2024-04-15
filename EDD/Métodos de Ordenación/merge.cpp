@@ -2,6 +2,11 @@
 
 using namespace std;
 
+void reemplazarArreglo(double a[], double b[], int inicio, int fin) {
+	for (inicio; inicio <= fin; inicio++)
+		b[inicio] = a[inicio];
+}
+
 void mezcla(double a[], int izq, int med, int der) {
 	double *aux;
 	int x, y, z;
@@ -22,8 +27,7 @@ void mezcla(double a[], int izq, int med, int der) {
 	while (y <= der)
 		aux[z++] = a[y++];
 
-	for (int i = izq; i <= der; i++)
-		a[i] = aux[i];
+	reemplazarArreglo(aux, a, izq, der);
 
 	delete aux;
 }
