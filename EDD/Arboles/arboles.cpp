@@ -8,7 +8,7 @@ struct nodo {
     nodo *izq;
 };
 
-void buscar(nodo *&raiz, int dato, nodo *&actual, nodo *&anterior) {
+void buscar(nodo *raiz, int dato, nodo *&actual, nodo *&anterior) {
     bool encontrado = 0;
     anterior = NULL;
     actual = raiz;
@@ -23,10 +23,6 @@ void buscar(nodo *&raiz, int dato, nodo *&actual, nodo *&anterior) {
                 actual = actual->der;
         }
     }
-    if (!encontrado)
-        cout << "No existe \n" << dato;
-    else
-        cout << dato << " existe \n";
 }
 
 void insertar(nodo *&raiz, int dato) {
@@ -35,41 +31,102 @@ void insertar(nodo *&raiz, int dato) {
     if (actual != NULL)
         cout << "Elemento duplicado \n";
     else {
-        nodo *nuevo = new nodo;
+        nuevo = new nodo;
         nuevo->valor = dato;
         nuevo->izq = NULL;
         nuevo->der = NULL;
 
         if (anterior == NULL)
             raiz = nuevo;
-        else{
+        else {
             if (anterior->valor > dato)
                 anterior->izq = nuevo;
             else
                 anterior->der = nuevo;
         }
+    }
 }
 
-void imprimirRH(nodo *raiz) {
-    cout << raiz->valor << " " << raiz->izq->valor << " " << raiz->der->valor << "\n";
+void inOrden(nodo *raiz) {
+    if (raiz != NULL) {
+        inOrden(raiz->izq);
+        cout << " " << raiz->valor;
+        inOrden(raiz->der);
+    }
 }
 
-void imprimir(nodo *raiz) {
-    imprimirRH(raiz);
-    if (raiz->izq != NULL)
-        imprimir(raiz->izq);
-    if (raiz->der != NULL)
-        imprimir(raiz->der);
+void preOrden(nodo *raiz) {
+    if (raiz != NULL) {
+        cout << raiz->valor << " ";
+        preOrden(raiz->izq);
+        preOrden(raiz->der);
+    }
+}
+
+void postOrden(nodo *raiz) {
+	if (raiz != NULL) {
+		postOrden(raiz->izq);
+		postOrden(raiz->der);
+		cout << " " << raiz->valor;
+	}
+}
+
+int contarNodo(nodo *raiz, int &c) {
+	if (raiz != NULL) {
+		c++;
+		contarNodo(raiz->izq, c);
+		contarNodo(raiz->der, c);
+	}
+	return c;
+}
+
+int profundidad(nodo *raiz) {
+	nodo *izqui = raiz;
+	nodo *dere = raiz;
+	int d, i;
+	d = 0;
+	i = 0;
+
+	while (izqui != NULL) {
+		i++;
+		izqui = izqui->izq;
+	}
+	while (dere != NULL) {
+		d++;
+		dere = dere->der;
+	}
+
+	if (d > i)
+		return d;
+	else
+		return i;
 }
 
 int main() {
-    nodo *raiz;
-    for (int i = 0; i < 6; i++){
+    nodo *raiz = NULL;
+
+    for (int i = 0; i < 5; i++){
         int dato;
         cin >> dato;
         insertar(raiz, dato);
     }
-    imprimir(raiz);
+
+    cout << "inOrden \n";
+    inOrden(raiz);
+    cout << "\n";
+    
+    cout << "preOrden \n";
+    preOrden(raiz);
+    cout << "\n";
+
+	cout << "postOrden \n";
+    postOrden(raiz);
+    cout << "\n";
+
+    int c = 0;
+    cout << contarNodo(raiz, c) << "\n";
+
+    cout << profundidad(raiz) << "\n";
 
     return 0;
 }

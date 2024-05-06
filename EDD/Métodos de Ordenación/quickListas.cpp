@@ -8,24 +8,25 @@ struct nodo {
 };
 
 void insertar(nodo *&n, int nValor) {
-	if (n == NULL)
+	if (n == NULL){
 		nodo *ap = new nodo;
 		ap->valor = nValor;	
 		ap->siguiente = NULL;
 
 		n = ap;
+    }
 	else
 		insertar(n->siguiente, nValor);
 }
 
 void imprimirLista(nodo *n) {
-	while (n !== NULL)
+	while (n != NULL)
 		cout << n->valor << " -> ";
 	cout << "\n";
 }
 
 int main() {
-	nodo *cabeza == NULL;
+	nodo *cabeza = NULL;
 
 	cout << "Ingresa tus datos, para terminar ingresa un dato negativo \n";
 	int band = 1;
@@ -36,7 +37,7 @@ int main() {
 		if (dato < 0)
 			band = 0;
 		else
-			insertar(cabeza, nValor);
+			insertar(cabeza, dato);
 	}
 
 	imprimirLista(cabeza);
