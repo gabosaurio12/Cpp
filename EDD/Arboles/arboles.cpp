@@ -102,6 +102,21 @@ int profundidad(nodo *raiz) {
 		return i;
 }
 
+void auxAltura (nodo *nod, int a, int &altura) {
+    if (nod->izq)
+        auxAltura(nod->izq, a + 1, altura);
+    if (nod->der)
+        auxAltura(nod->der, a + 1, altura);
+    if (esHoja(nod), && a > altura)
+        altura = a;
+}
+
+int alturaArbol(nodo *raiz) {
+    int altura = 0;
+    auxAltura(raiz, 0, altura);
+    return altura + 1;
+}
+
 int main() {
     nodo *raiz = NULL;
 
