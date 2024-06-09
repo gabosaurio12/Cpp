@@ -1,5 +1,3 @@
-
-/*s
 El comportamiento de los ABB no es siempre tan bueno como nos gustaría
 
 Para minimizar el problema de los ABB desequilibrados se puede recurrir a algoritmos de equilibrado de arboles globales
@@ -30,13 +28,13 @@ El FE es la diferencia entre las alturas del árbol derecho y el izquierdo:
 
 Por definición, para un árbol AVL este valor debe ser -1, 0, 1
 
-*/
+--- ROTACIÓN DOBLE A LA DERECHA (DD) ---
+Se usará cuando el subárbol izquierdo de un nodo sea 2 unidades más alto que el derecho, es decir, cuando su FE sea de -2
 
-#include <iostream>
+Y además la raíz del subárbol izquierdo tenga una FE de 1, es decir, que esté cargado a la derecha
 
-using namespace std;
+Este es uno de los posibles árboles que pueden presentar esta estructura, pero hay otras dos posibilidades
+	El nodo R puede tener un FE de -1, 0, o 1. En cada uno de esos casos los árboles izquierod y derecho de R (B y C) puedem tener alturas
+	de n y n - 1, n y n o n - 1 y n, respectivamente
 
-int main() {
-	
-	return 0;
-}
+El modo de realizar la rotación es independiente de la estructura del árbol R, cualquiera de las tres produce resultados equivalentes

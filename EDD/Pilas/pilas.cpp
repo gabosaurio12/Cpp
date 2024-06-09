@@ -24,6 +24,24 @@ void pull(nodo *&tope, int &elemento) {
 	}
 }
 
+int consultarTope(nodo *tope) {
+    int dato = 0;
+    if (tope != NULL)
+        dato = tope->valor;
+    return dato;
+}
+
+int pop(nodo *&tope) {
+    int dato = 0;
+    if (tope != NULL) {
+        dato = tope->valor;
+        nodo *aux = tope;
+        tope = tope->siguiente;
+        delete(aux);
+    }
+    return dato;
+}
+
 int main() {
 	nodo *tope = NULL;
 
@@ -37,7 +55,10 @@ int main() {
 		cout << aux->valor << " -> ";
 	}
 	cout << "\n";
-
+    
+    cout << consultarTope(tope) << "\n";
+    cout << pop(tope) << " Eliminado \n";
+    cout << consultarTope(tope) << "\n";
 
 	return 0;
 }
