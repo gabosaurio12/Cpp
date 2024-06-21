@@ -55,8 +55,7 @@ Nodo* crearNodo(int dat, Nodo *padre){
 }
 
 // Insertar un dato en el árbol AVL
-void Insertar(Nodo *&raiz, int dat)
-{
+void Insertar(Nodo *&raiz, int dat) {
    Nodo *padre, *actual = NULL;
    
    actual = raiz;
@@ -114,13 +113,16 @@ void Equilibrar(Nodo *nodo, int rama, bool nuevo)
       }
       else if(nodo->FE == 2) {  // Rotar a izquierdas y salir:
          if(nodo->derecho->FE == -1) RDI(nodo); // Rotación doble
-         else RSI(nodo);                        // Rotación simple
+         else 
+            RSI(nodo);                        // Rotación simple
          salir = true;
       }
-      if(nodo->padre) 
+      if(nodo->padre) {
          if(nodo->padre->derecho == nodo) 
             rama = DERECHO; 
-         else rama = IZQUIERDO;
+         else
+            rama = IZQUIERDO;
+      }
       nodo = nodo->padre; // Calcular FE, siguiente nodo del camino.
    }   
 }
@@ -284,13 +286,14 @@ void Borrar(Nodo *raiz, int dat)
    while(!Vacio(actual)) {
       if(dat == actual->dato) { // Si el valor está en el nodo actual
          if(EsHoja(actual)) { // Y si además es un nodo hoja: lo borramos
-            if(!padre) // Si tiene padre (no es el nodo raiz)
+            if(!padre) {// Si tiene padre (no es el nodo raiz)
                // Anulamos el apuntador que le hace referencia
                if(padre->derecho == actual) 
                     padre->derecho = NULL;
                else 
                     if(padre->izquierdo == actual) 
                         padre->izquierdo = NULL;
+            }
             delete actual; // Borrar el nodo
             actual = NULL;
             // El nodo padre del actual puede ser ahora un nodo hoja, por lo tanto su
@@ -301,11 +304,12 @@ void Borrar(Nodo *raiz, int dat)
                actual = padre;
                padre = actual->padre;
             }
-            if(padre)
+            if(padre) {
                if(padre->derecho == actual) 
                     Equilibrar(padre, DERECHO, false);
                else 
                     Equilibrar(padre, IZQUIERDO, false);
+            }
             return;
          }
          else { // Si el valor está en el nodo actual, pero no es hoja
