@@ -1,0 +1,59 @@
+Para guardar un archivo en una subcarpeta utilizando fstream, sigue estos pasos:
+
+1. Crear la Subcarpeta (si no existe):
+
+** En POSIX (Linux y macOS): **
+
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <iostream>
+
+void crearDirectorio(const std::string& ruta) {
+    if (mkdir(ruta.c_str(), 0777) == -1) {
+        std::cerr << "Error al crear directorio: " << ruta << std::endl;
+    } else {
+        std::cout << "Directorio creado: " << ruta << std::endl;
+    }
+}
+
+** En Windows: **
+
+#include <direct.h>
+#include <iostream>
+
+void crearDirectorio(const std::string& ruta) {
+    if (_mkdir(ruta.c_str()) == -1) {
+        std::cerr << "Error al crear directorio: " << ruta << std::endl;
+    } else {
+        std::cout << "Directorio creado: " << ruta << std::endl;
+    }
+}
+
+2. Guardar el Archivo especificando la ruta completa:
+
+#include <fstream>
+#include <iostream>
+
+void guardarArchivo(const std::string& ruta) {
+    std::ofstream archivo(ruta);
+
+    if (archivo.is_open()) {
+        archivo << "Hola, mundo!" << std::endl;
+        archivo.close();
+        std::cout << "Archivo guardado en: " << ruta << std::endl;
+    } else {
+        std::cerr << "No se pudo abrir el archivo: " << ruta << std::endl;
+    }
+}
+
+int main() {
+    std::string carpeta = "mi_subcarpeta";
+    crearDirectorio(carpeta);
+
+    std::string rutaArchivo = carpeta + "/mi_archivo.txt";
+    guardarArchivo(rutaArchivo);
+
+    return 0;
+}
+
+Con estos pasos, puedes crear un directorio si no existe y guardar un archivo en una subcarpeta usando fstream. ¡Espero que esto te sea útil!
