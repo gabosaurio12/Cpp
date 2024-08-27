@@ -26,8 +26,8 @@ int main(){
 	cout << "Cuantos datos quieres promediar? \n";
 	cin >> NumDeDatos;
 
-	suma = leerdatos(NumDeDatos);
-	cout << "El promedio es " << promedio3(suma, NumDeDatos) << endl;
+	suma = leerDatos(NumDeDatos);
+	cout << "El promedio es " << promedio(suma, NumDeDatos) << endl;
 
 	return 0;
 }

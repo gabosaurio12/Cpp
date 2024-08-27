@@ -4,7 +4,7 @@ using namespace std;
 
 void HorasExtra(int &band, int horas){
     if (horas > 40){
-        band = 0;
+        band = true;
     }
 }
 
@@ -21,10 +21,14 @@ void Salario(int band, float horas, float salarioh){
 }
 
 int main(){
-    float horas, salarioh;
+    float horas, salarioBase;
     int band = true;
-    HorasExtra(band,41);
-    Salario(0,5,10);
+    cout << "Ingresa las horas extra que trabajaste ";
+    cin >> horas;
+    cout << "Ingresa tu salario base ";
+    cin >> salarioBase;
+    HorasExtra(band,horas);
+    Salario(band,horas,salarioBase);
 
     return 0;
 }
