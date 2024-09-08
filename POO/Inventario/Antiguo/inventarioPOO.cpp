@@ -6,9 +6,14 @@
 using namespace std;
 
 class Producto {
-public:
-	Producto() : nombre(""), marca(""), categoria(""), precio(0.0f) {}
+private:
+	string nombre;
+	string marca;
+	string categoria;
+	float precio;
+	int stock;
 
+public:
 	Producto(string n, string m, string c, float p) {
 		nombre = n;
 		marca = m;
@@ -57,12 +62,6 @@ public:
 		stock = s;
 	}
 
-private:
-	string nombre;
-	string marca;
-	string categoria;
-	float precio;
-	int stock;
 };
 
 string altaCodigo(map<string, Producto> &productos) {
