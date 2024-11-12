@@ -8,13 +8,13 @@ void intercambiar(int &a, int &b) {
     b = aux;
 }
 
-void quickSort(int a[], int primero, int ultimo) {
+void quickSort(int a[], int first, int last) {
     int p, i, k;
-    int central = (primero + ultimo) / 2;
+    int central = (first + last) / 2;
 
     p = a[central];
-    i = primero;
-    k = ultimo;
+    i = first;
+    k = last;
 
     do {
         while (a[i] < p)
@@ -29,11 +29,11 @@ void quickSort(int a[], int primero, int ultimo) {
         }
     } while (i <= k);
 
-    if (primero < k)
-        quickSort(a, primero, k);
+    if (first < k)
+        quickSort(a, first, k);
     
-    if (i < ultimo)
-        quickSort(a, i, ultimo);
+    if (i < last)
+        quickSort(a, i, last);
 }
 
 void imprimirArr(int a[], int n) {
